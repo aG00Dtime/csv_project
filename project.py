@@ -13,7 +13,15 @@
 
 # <--- code STARTS here --->
 import csv
-import matplotlib as plt
+from matplotlib import pyplot as plt
+import pandas as pd
+
+# <--- to do--->
+print("This program outputs the cases,deaths and total Deaths of a population from the selected country ")
+# create new file with data we want -done,kinda
+# output the data -done,kinda
+# graphs
+# comparisons
 
 
 def country_specific_csv():
@@ -42,11 +50,17 @@ def country_specific_csv():
                 # print(date, country, new_cases,
                 #       new_deaths, total_deaths)
                 a_country.append({
-                    'date': row['date'],
+                    'Date': row['date'],
                     # "country": row['location'],
-                    'new_cases': row['new_cases'],
-                    'new_deaths': row['new_deaths'],
-                    'total_deaths': row['total_deaths']
+                    'New_Cases': row['new_cases'],
+                    'New_Deaths': row['new_deaths'],
+                    # "Median_Age": row['median_age'],
+                    # "65_and_older": row['aged_65_older'],
+                    # "70_and_older": row['aged_70_older'],
+                    'Life_Expectency': row['life_expectancy'],
+                    'Population': row['population'],
+                    'Total_Deaths': row['total_deaths']
+
 
 
                 })
@@ -55,13 +69,30 @@ def country_specific_csv():
     # create new csv file called country.csv with our extracted data
     # file name depends on the chosen country
     with open(user_country.capitalize() + '.csv', 'w', newline='') as a_country_csv:
-        fieldnames = ['date',  'new_cases',  # 'country',
-                      'new_deaths', 'total_deaths']
+        fieldnames = ['Date',  'New_Cases', 'New_Deaths',
+                      'Life_Expectency', 'Population', 'Total_Deaths']
         csv_dict_writer = csv.DictWriter(a_country_csv, fieldnames=fieldnames)
         csv_dict_writer.writeheader()
         for selected_country in a_country:
             csv_dict_writer.writerow(selected_country)
-    print("New csv file created.")
+    print("\nNew csv file created.")
+    # ask how many rows to show from user
+    #user_row_answer = input('how many rows of data would you like to view?')
+
+    # TESTING TO SEE HOW THE THING WORKS  ---- TEMP
+    pd.set_option('display.max_rows', None)
+    #pd.set_option('display.max_columns', None)
+    new_file = pd.read_csv(user_country.capitalize() + '.csv')
+    print(new_file)
+    stat_answer = input(
+        "\nwould you like a summary of the country? [Y]es , [N]o: ")
+    if stat_answer.upper() != "N":
+        print(new_file.describe())
+        graph_answer = input("Would you like to view a graph ? [Y]es, [N]o: ")
+        if graph_answer != "N":
+            plt.plot(new_file.Date, new_file.Total_Deaths)
+            plt.show()
+    # TESTING TO SEE HOW THE THING WORKS  ---- TEMP
 
 
 country_specific_csv()
