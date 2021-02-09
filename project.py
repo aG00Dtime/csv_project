@@ -36,7 +36,7 @@ def country_specific_csv():
         # parse data we want from the larger datasheet
         # go through the rows and filter
 
-        user_country = input("Please enter a country to output data for :")
+        user_country = input("\nPlease enter a country to output data for :")
         # extract data
         for row in csv_dict_reader:
             # filter by country
@@ -88,7 +88,8 @@ def country_specific_csv():
         "\nwould you like a summary of the country? [Y]es , [N]o: ")
     if stat_answer.upper() != "N":
         print(new_file.describe())
-        graph_answer = input("Would you like to view a graph ? [Y]es, [N]o: ")
+        graph_answer = input(
+            "\nWould you like to view a graph ? [Y]es, [N]o: ")
         if graph_answer != "N":
             plt.plot(new_file.Date, new_file.Total_Deaths)
             plt.show()
