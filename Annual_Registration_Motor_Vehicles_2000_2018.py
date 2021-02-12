@@ -148,19 +148,22 @@ def year_view():
         ask_user_for_year = (input("\nPlease enter a year :"))
 
         # incorrect year check
-        if 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
+        if len(ask_user_for_year) > 4 or 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
             print("Incorrect Year")
             continue
-            # find data for the year entered
-        custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
-                                              ask_user_for_year]
-        # print the data
-        print(custom_year)
-        # ask if they want to search again
+        else:
+            break
+        # find data for the year entered
+    custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
+                                          ask_user_for_year]
+    # print the data
+    print(custom_year)
+    # ask if they want to search again
+    while True:
         user_go_again = input(
             "\nWould You like to enter another year? [Y]es,[N]o : ")
         if user_go_again.lower() == 'y':
-            continue
+            year_view()
         elif user_go_again.lower() == 'n':
             break
         else:
