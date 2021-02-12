@@ -147,8 +147,11 @@ def year_view():
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
 
-        # incorrect year check
-        if len(ask_user_for_year) > 4 or 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
+        # incorrect year check/isdecimal() returns true if only numbers are entered
+        if not ask_user_for_year.isdecimal():
+            print("Enter numbers only")
+
+        elif 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
             print("Incorrect Year")
             continue
         else:
