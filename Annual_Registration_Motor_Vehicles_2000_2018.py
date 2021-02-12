@@ -24,7 +24,7 @@
 
 # <--- code STARTS here --->
 
-
+# import libs needed
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -36,37 +36,38 @@ csv_file = pd.read_csv(
     "Annual_Registration_Motor_Vehicles_2000_2018.csv")
 
 # only select the rows we want to use
-vehicle_registration_df = csv_file.iloc[0:19]
+vehicle_registration_df = csv_file.iloc[:19]
 
 # disables the warming when we change the data from str to ints
 pd.options.mode.chained_assignment = None
 
 # converts the values in the df to  int
 for row in vehicle_registration_df:
-
     vehicle_registration_df[row] = vehicle_registration_df[row].astype(int)
     # print(str(vehicle_registration_df[row]))
 
-# make the year column a str so it doesnt break the  year filter and graphs
+# make the year column a str so it doesn't break the  year filter and graphs
 vehicle_registration_df.Period = vehicle_registration_df.Period.astype(str)
 
 # replace spaces in header names with underscores
 vehicle_registration_df.columns = [col.replace(
     " ",  "_") for col in vehicle_registration_df.columns]
-
 # <----Csv file handling ends here---->
 
 
 def summaries():
     # summaries
-    print("\nThe Average amount of Private cars registered per year was ",
-          round(vehicle_registration_df.Private_Cars.mean(), 1), 'and the total amount registered was', vehicle_registration_df.Private_Cars.sum(), '.')
+    # print("\nThe Average amount of Private cars registered per year was ",
+    #       round(vehicle_registration_df.Private_Cars.mean(), 1), 'and the total amount registered was', vehicle_registration_df.Private_Cars.sum(), '.')
+
+    print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean())
 
 
 def graphs():
     # view graphs
     while True:
-        print("To view a graphs that shows all registered vehicles during the period 2000 - 2018 Press 1\nTo view a graph that compares the total vehicles registerd per year during the period 2000 to 2018 Press 2\nTo exit this menu press 3")
+        print("\nTo view a graphs that shows all registered vehicles during the period 2000 - 2018 Press 1\nTo view a graph that compares the total vehicles registered per year during the period 2000 to 2018 Press 2\nTo exit this menu press 3")
         user_graph_choice = input("Choice : ")
 
         if int(user_graph_choice) == 1:
@@ -96,7 +97,7 @@ def graphs():
             # trailers
             plt.plot((vehicle_registration_df.Period),
                      vehicle_registration_df.Trailers)
-            # motorsycles
+            # motorcycles
             plt.plot((vehicle_registration_df.Period),
                      vehicle_registration_df.Motorcycles)
 
@@ -114,8 +115,8 @@ def graphs():
 
         elif int(user_graph_choice) == 2:
             # total amount of vehicles registered
-            plt.plot(vehicle_registration_df.Period,
-                     vehicle_registration_df.Total)
+            plt.bar(vehicle_registration_df.Period,
+                    vehicle_registration_df.Total)
             plt.xlabel("Years")
             plt.ylabel("Total amount of Vehicles Registered")
             plt.show()
@@ -131,7 +132,7 @@ def graphs():
 def year_view():
     # view by year
     while True:
-        ask_user_for_year = (input("Please enter a year :"))
+        ask_user_for_year = (input("\nPlease enter a year :"))
         # print(type(ask_user_for_year))
         custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
                                               ask_user_for_year]
@@ -171,8 +172,6 @@ def prompt():
 
 # run
 prompt()
-
-
 # removed
 # some columns are not in the right data type/have random characters so this is the way i remove them
 # remove any numbers in the header
