@@ -1,26 +1,25 @@
 # Your python program must accomplish the following:
 
-# Read selected data file and output its content
-# out put the rows
+# Read selected data file and output its content and output the rows
+
 # Output statistical summaries of the data file. You will decide on what summaries are appropriate and useful
-# average amount of vehicles registered  per year and the total amount registeed from 2000 to 2018
+
 
 # Produce at least 2 graphs on some aspect of the dataset. You will decide what graphs/charts you will produce
-# graph of the cars registed over the years and the total number per year
+
 
 # Perform and output results of comparative statistical analyses of the data of any two of the years of data available in your dataset
-# compare the 1st year and the last year
+
 
 # Perform Any ONE other creative analysis of some aspect of the data in the dataset.
-# idk
 
 
 # to do
 # print the rows-done
-# summaries- almost finished??
+# summaries- done,kinda?
 # graphs -done
-# compare
-# idk
+# compare-to do
+# idk-?
 
 # <--- code STARTS here --->
 
@@ -30,7 +29,6 @@ import matplotlib.pyplot as plt
 
 
 # <----Csv file handling starts here---->
-
 # read the csv file
 csv_file = pd.read_csv(
     "Annual_Registration_Motor_Vehicles_2000_2018.csv")
@@ -77,7 +75,8 @@ def summaries():
 def graphs():
     # view graphs
     while True:
-        print("\nTo view a graphs that shows all registered vehicles during the period 2000 - 2018 Press 1\nTo view a graph that compares the total vehicles registered per year during the period 2000 to 2018 Press 2\nTo exit this menu press 3")
+        print(
+            "\nTo view a graphs that shows all registered vehicles during the period 2000 - 2018 Press [1]\nTo view a graph that compares the total vehicles registered per year during the period 2000 to 2018 Press [2]\nTo exit this menu press [3]")
         user_graph_choice = input("Choice : ")
 
         if int(user_graph_choice) == 1:
@@ -85,39 +84,39 @@ def graphs():
             # vehicle_registration_df.plot.bar()
 
             # private cars
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Private_Cars)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Private_Cars)
             # lorries
 
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Lorries)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Lorries)
             # vans
 
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Vans)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Vans)
             # hire cars
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Hire_Cars)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Hire_Cars)
             # buses
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Buses)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Buses)
             # Station Wagons
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Station_Wagons)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Station_Wagons)
             # tractors
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Tractors)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Tractors)
 
             # trailers
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Trailers)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Trailers)
             # motorcycles
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Motorcycles)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Motorcycles)
 
             # other vehicles
-            plt.bar((vehicle_registration_df.Period),
-                    vehicle_registration_df.Other)
+            plt.plot((vehicle_registration_df.Period),
+                     vehicle_registration_df.Other)
 
             # labels
             plt.xlabel("Years")
@@ -171,7 +170,8 @@ def year_view():
 def prompt():
     # ask user what to do
     while True:
-        print("\nTo view all the registration data from the year 2000 to 2018 Enter 1\nTo view data by year Enter 2\nTo view graphs of the data Enter 3\nTo view summaries of the data Enter 4\nTo exit the program Enter 0 ")
+        print(
+            "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo exit the program Enter [0] ")
         ask_user = input('Choice : ')
         if int(ask_user) == 1:
             print(vehicle_registration_df)
