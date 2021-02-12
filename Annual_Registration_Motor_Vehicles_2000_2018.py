@@ -17,7 +17,7 @@
 
 # to do
 # print the rows-done
-# summaries- kinda?
+# summaries- almost finished??
 # graphs -done
 # compare
 # idk
@@ -57,11 +57,21 @@ vehicle_registration_df.columns = [col.replace(
 
 def summaries():
     # summaries
-    # print("\nThe Average amount of Private cars registered per year was ",
-    #       round(vehicle_registration_df.Private_Cars.mean(), 1), 'and the total amount registered was', vehicle_registration_df.Private_Cars.sum(), '.')
+    # adds thousands seperator
+    pd.options.display.float_format = '{:,.0f}'.format
 
+    # print summaries
+    print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018\n")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean())
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean().to_string())
+
+    print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018\n ")
+    print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  # converted to float because base values are ints
+
+    print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
+    # converted to float because base values are ints
+    print((vehicle_registration_df[['Total']].sum().astype(float).to_string()))
 
 
 def graphs():
@@ -71,39 +81,43 @@ def graphs():
         user_graph_choice = input("Choice : ")
 
         if int(user_graph_choice) == 1:
+            # plot.bar plots everthing in the dataframe next to eachother
+            # vehicle_registration_df.plot.bar()
 
             # private cars
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Private_Cars)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Private_Cars)
             # lorries
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Lorries)
+
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Lorries)
             # vans
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Vans)
+
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Vans)
             # hire cars
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Hire_Cars)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Hire_Cars)
             # buses
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Buses)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Buses)
             # Station Wagons
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Station_Wagons)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Station_Wagons)
             # tractors
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Tractors)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Tractors)
 
             # trailers
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Trailers)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Trailers)
             # motorcycles
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Motorcycles)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Motorcycles)
 
             # other vehicles
-            plt.plot((vehicle_registration_df.Period),
-                     vehicle_registration_df.Other)
+            plt.bar((vehicle_registration_df.Period),
+                    vehicle_registration_df.Other)
 
             # labels
             plt.xlabel("Years")
@@ -133,11 +147,17 @@ def year_view():
     # view by year
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
-        # print(type(ask_user_for_year))
+
+        # incorrect year check
+        if 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
+            print("Incorrect Year")
+            continue
+            # find data for the year entered
         custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
                                               ask_user_for_year]
-
+        # print the data
         print(custom_year)
+        # ask if they want to search again
         user_go_again = input(
             "\nWould You like to enter another year? [Y]es,[N]o : ")
         if user_go_again.lower() == 'y':
@@ -172,35 +192,3 @@ def prompt():
 
 # run
 prompt()
-# removed
-# some columns are not in the right data type/have random characters so this is the way i remove them
-# remove any numbers in the header
-# vehicle_registration_df.columns = vehicle_registration_df.columns.str.replace(
-#     '\d+', '').str.strip()
-# def convert_column_types():
-#     pd.options.mode.chained_assignment = None
-#     vehicle_registration_df["Private_Cars"] = vehicle_registration_df["Private_Cars"].str.replace(
-#         ",", "").astype(int)
-#     vehicle_registration_df["Lorries"] = vehicle_registration_df["Lorries"].str.replace(
-#         ",", "").astype(int)
-#     vehicle_registration_df["Vans"] = vehicle_registration_df["Vans"].str.replace(
-#         ",", "").astype(int)
-#     vehicle_registration_df["Station_Wagons"] = vehicle_registration_df["Station_Wagons"].str.replace(
-#         ",", "")
-#     vehicle_registration_df["Station_Wagons"] = vehicle_registration_df["Station_Wagons"].str.replace(
-#         "-", "0").astype(
-#         int)
-#     vehicle_registration_df["Motorcycles"] = vehicle_registration_df["Motorcycles"].str.replace(
-#         ",", "").astype(int)
-#     vehicle_registration_df["Other"] = vehicle_registration_df["Other"].str.replace(
-#         ",", "").astype(int)
-#     vehicle_registration_df["Total"] = vehicle_registration_df["Total"].str.replace(
-#         ",", "").astype(int)
-# .str.replace(
-#     ",", "").astype(int)
-
-# replace stuff with for loop
-# for row in vehicle_registration_df:
-
-# vehicle_registration_df[row] = vehicle_registration_df[row].str.replace(
-#         ",", "").astype(int)
