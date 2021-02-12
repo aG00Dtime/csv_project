@@ -62,10 +62,10 @@ def summaries():
     print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018\n")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
                                    'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean().to_string())
-
+    # converted to float because base values are ints
     print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018\n ")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  # converted to float because base values are ints
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  
 
     print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
     # converted to float because base values are ints
