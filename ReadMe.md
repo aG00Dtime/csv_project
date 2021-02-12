@@ -3,7 +3,7 @@
 * CSE 1100 – Introduction to Computing Group Assignment 
 * Python Programming Lecturer: Lenandlar Singh Submission 
 * Sunday February 28, 2021, 11:59 P.M 
-* Group Size – 6 to 8 Value 
+* Group Size – 6 to 8  
 * 20% of course grade
 
 # General
