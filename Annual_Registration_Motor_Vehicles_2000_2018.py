@@ -1,18 +1,9 @@
 # Your python program must accomplish the following:
-
 # Read selected data file and output its content and output the rows
-
 # Output statistical summaries of the data file. You will decide on what summaries are appropriate and useful
-
-
 # Produce at least 2 graphs on some aspect of the dataset. You will decide what graphs/charts you will produce
-
-
 # Perform and output results of comparative statistical analyses of the data of any two of the years of data available in your dataset
-
-
 # Perform Any ONE other creative analysis of some aspect of the data in the dataset.
-
 
 # to do
 # print the rows-done
@@ -26,7 +17,6 @@
 # import libs needed
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 # <----Csv file handling starts here---->
 # read the csv file
