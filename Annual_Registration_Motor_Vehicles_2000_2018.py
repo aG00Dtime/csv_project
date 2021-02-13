@@ -1,18 +1,9 @@
 # Your python program must accomplish the following:
-
 # Read selected data file and output its content and output the rows
-
 # Output statistical summaries of the data file. You will decide on what summaries are appropriate and useful
-
-
 # Produce at least 2 graphs on some aspect of the dataset. You will decide what graphs/charts you will produce
-
-
 # Perform and output results of comparative statistical analyses of the data of any two of the years of data available in your dataset
-
-
 # Perform Any ONE other creative analysis of some aspect of the data in the dataset.
-
 
 # to do
 # print the rows-done
@@ -26,7 +17,6 @@
 # import libs needed
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 # <----Csv file handling starts here---->
 # read the csv file
@@ -62,10 +52,10 @@ def summaries():
     print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018\n")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
                                    'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean().to_string())
-
+    # converted to float because base values are ints
     print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018\n ")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  # converted to float because base values are ints
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  
 
     print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
     # converted to float because base values are ints
@@ -147,20 +137,26 @@ def year_view():
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
 
-        # incorrect year check
-        if 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
+        # incorrect year check/isdecimal() returns true if only numbers are entered
+        if not ask_user_for_year.isdecimal():
+            print("Enter numbers only")
+
+        elif 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
             print("Incorrect Year")
             continue
-            # find data for the year entered
-        custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
-                                              ask_user_for_year]
-        # print the data
-        print(custom_year)
-        # ask if they want to search again
+        else:
+            break
+        # find data for the year entered
+    custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
+                                          ask_user_for_year]
+    # print the data
+    print(custom_year)
+    # ask if they want to search again
+    while True:
         user_go_again = input(
             "\nWould You like to enter another year? [Y]es,[N]o : ")
         if user_go_again.lower() == 'y':
-            continue
+            year_view()
         elif user_go_again.lower() == 'n':
             break
         else:
