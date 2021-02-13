@@ -9,7 +9,7 @@
 # print the rows-done
 # summaries- done,kinda?
 # graphs -done
-# compare-to do
+# compare-to do- have an idea,kinda
 # idk-?
 
 # <--- code STARTS here --->
@@ -21,12 +21,12 @@ import matplotlib.pyplot as plt
 # <----Csv file handling starts here---->
 # read the csv file
 csv_file = pd.read_csv(
-    "Annual_Registration_Motor_Vehicles_2000_2018.csv")
+    "Annual_Registration_Motor_Vehicles_2000_2018.csv", skiprows=[0])  # skiprows-skips the title at the top of the csv
 
 # only select the rows we want to use
 vehicle_registration_df = csv_file.iloc[:19]
 
-# disables the warming when we change the data from str to ints
+# disables the warning when we change the subset of data from str to ints
 pd.options.mode.chained_assignment = None
 
 # converts the values in the df to  int
@@ -44,6 +44,7 @@ vehicle_registration_df.columns = [col.replace(
 
 
 def summaries():
+    ''' some summaries of the data ,means,sums '''
     # summaries
     # adds thousands seperator
     pd.options.display.float_format = '{:,.0f}'.format
@@ -55,7 +56,7 @@ def summaries():
     # converted to float because base values are ints
     print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018\n ")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())  
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().astype(float).to_string())
 
     print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
     # converted to float because base values are ints
@@ -71,7 +72,7 @@ def graphs():
 
         if int(user_graph_choice) == 1:
             # plot.bar plots everthing in the dataframe next to eachother
-            # vehicle_registration_df.plot.bar()
+            # vehicle_registration_df.plot(x='Period')
 
             # private cars
             plt.plot((vehicle_registration_df.Period),
@@ -133,7 +134,8 @@ def graphs():
 
 
 def year_view():
-    # view by year
+    ''' outputs a single year's data '''
+
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
 
@@ -150,7 +152,7 @@ def year_view():
     custom_year = vehicle_registration_df[vehicle_registration_df.Period ==
                                           ask_user_for_year]
     # print the data
-    print(custom_year)
+    print(custom_year.to_string(index=False))
     # ask if they want to search again
     while True:
         user_go_again = input(
@@ -163,14 +165,65 @@ def year_view():
             continue
 
 
+def year_vs_year():
+    # this should ideally output the difference between the two years
+    '''plots a graph that shows the two years side by side'''
+
+    df = vehicle_registration_df
+
+    while True:
+        year1_ask = input("Enter the 1st year :")
+        # incorrect year check/isdecimal() returns true if only numbers are entered
+        if not year1_ask.isdecimal():
+            print("Enter numbers only")
+
+        elif 2000 > int(year1_ask) or int(year1_ask) > 2018:
+            print("Incorrect Year")
+            continue
+        else:
+            break
+
+    while True:
+        year2_ask = input("Enter the 2nd year :")
+        # incorrect year check/isdecimal() returns true if only numbers are entered
+        if not year2_ask.isdecimal():
+            print("Enter numbers only")
+
+        elif 2000 > int(year2_ask) or int(year2_ask) > 2018:
+            print("Incorrect Year")
+            continue
+        else:
+            break
+
+    year1 = df[df.Period == year1_ask
+               ]
+    year2 = df[df.Period == year2_ask
+               ]
+
+    joined_df = [year1, year2]
+    joined_df = pd.concat(joined_df)
+    print(joined_df.set_index("Period").diff())
+
+    # print(joined_df.diff(periods=-1))
+
+    # joined_df.plot.bar(x='Period')
+
+    # # labels
+    # plt.xlabel("Years")
+    # plt.ylabel("Amount of Vehicles Registered")
+
+    # # show the graph
+    # plt.show()
+
+
 def prompt():
-    # ask user what to do
+
     while True:
         print(
-            "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo exit the program Enter [0] ")
+            "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo compare two years Enter [5]\nTo exit the program Enter [0] ")
         ask_user = input('Choice : ')
         if int(ask_user) == 1:
-            print(vehicle_registration_df)
+            print(vehicle_registration_df.to_string(index=False))
 
         elif int(ask_user) == 2:
             year_view()
@@ -179,10 +232,12 @@ def prompt():
             graphs()
         elif int(ask_user) == 4:
             summaries()
+        elif int(ask_user) == 5:
+            year_vs_year()
         elif int(ask_user) == 0:
             break
         else:
-            print("\nincorrect entry")
+            print("\nIncorrect entry")
             continue
 
 

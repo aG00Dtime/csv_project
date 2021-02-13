@@ -1,12 +1,14 @@
+# <--- code STARTS here --->
+
 # import libs needed
+
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 # <----Csv file handling starts here---->
 # read the csv file
 csv_file = pd.read_csv(
-    "Annual_Registration_Motor_Vehicles_2000_2018.csv")
+    "Annual_Registration_Motor_Vehicles_2000_2018.csv", skiprows=[0])
 
 # only select the rows we want to use
 vehicle_registration_df = csv_file.iloc[:19]
@@ -27,28 +29,18 @@ vehicle_registration_df.columns = [col.replace(
     " ",  "_") for col in vehicle_registration_df.columns]
 # <----Csv file handling ends here---->
 
-
-df = vehicle_registration_df
-
-# year1_ask = input("Enter the 1st year")
-# year2_ask = input("Enter the 2nd year")
-
-# year1 = df[df.Period == year1_ask
-#            ]
-# year2 = df[df.Period == year2_ask
-#            ]
+print(vehicle_registration_df)
 
 
-def percent_check(x, y):
-    p = x/y*100
-    return p
+def yeartoyear():
+    df = vehicle_registration_df
 
+    year1_ask = '2005'
+    year2_ask = '2006'
 
-# if year1.Private_Cars.sum() > year2.Private_Cars.sum():
-#     print(year1_ask, "had ")
-# else:
-#     print(year1.pc.sum().astype(str),
-#           "was less than ", year2.pc.sum().astype(str))
-
-
-print(percent_check(10, 100), '%')
+    year1 = df[df.Period == year1_ask
+               ]
+    year2 = df[df.Period == year2_ask
+               ]
+    joint_years = [year1, year2]
+    joint_years = pd.concat(joint_years)

@@ -1,4 +1,5 @@
-﻿Period,Private Cars,Hire Cars,Lorries,Buses,Station Wagons,Vans,Tractors,Trailers,Motorcycles,Other,Total
+﻿"Annual Registration of New Motor Vehicles, Guyana: 2000 to 2018",,,,,,,,,,,
+Period,Private Cars,Hire Cars,Lorries,Buses,Station Wagons,Vans,Tractors,Trailers,Motorcycles,Other,Total
 2000,1517,342,388,677,48,35,346,194,1285,504,5336
 2001,1232,291,338,536,3,45,118,157,1095,560,4375
 2002,1264,281,427,422,20,42,106,196,1188,246,4192
@@ -29,29 +30,29 @@
 4th Quarter,1313,137,237,197,1,263,104,79,902,248,3481
 ,,,,,,,,,,,
 2015,,,,,,,,,,,
-1st Quarter,1028,146,300,280,-,236,115,159,859,518,3641
+1st Quarter,1028,146,300,280,0,236,115,159,859,518,3641
 2nd Quarter,1132,109,221,225,128,246,67,101,735,376,3340
 3rd Quarter,1233,153,216,226,310,213,63,59,745,104,3322
 4th Quarter,1209,133,256,228,364,216,54,51,794,185,3490
 ,,,,,,,,,,,
 2016,,,,,,,,,,,
-1st Quarter,1098,116,227,207,-,106,44,44,755,447,3044
-2nd Quarter,1297,161,331,255,-,219,74,52,722,598,3709
+1st Quarter,1098,116,227,207,0,106,44,44,755,447,3044
+2nd Quarter,1297,161,331,255,0,219,74,52,722,598,3709
 3rd Quarter,1018,100,242,185,296,175,59,40,253,125,2493
 4th Quarter,841,85,197,153,276,144,54,46,811,159,2766
 ,,,,,,,,,,,
 2017,,,,,,,,,,,
-1st Quarter,587,241,246,155,-,145,48,63,794,386,2665
-2nd Quarter,579,218,249,146,-,157,44,59,707,412,2571
-3rd Quarter,530,236,227,146,-,110,31,41,658,474,2453
-4th Quarter,644,212,235,153,-,159,67,65,887,461,2883
+1st Quarter,587,241,246,155,0,145,48,63,794,386,2665
+2nd Quarter,579,218,249,146,0,157,44,59,707,412,2571
+3rd Quarter,530,236,227,146,0,110,31,41,658,474,2453
+4th Quarter,644,212,235,153,0,159,67,65,887,461,2883
 ,,,,,,,,,,,
 2018,,,,,,,,,,,
-1st Quarter,587,232,273,142,-,158,67,248,762,450,2919
-2nd Quarter,606,233,255,144,-,129,75,70,806,510,2828
-3rd Quarter,766,222,288,139,-,137,75,142,782,483,3034
-4th Quarter,785,257,273,203,-,181,81,119,974,504,3377
+1st Quarter,587,232,273,142,0,158,67,248,762,450,2919
+2nd Quarter,606,233,255,144,0,129,75,70,806,510,2828
+3rd Quarter,766,222,288,139,0,137,75,142,782,483,3034
+4th Quarter,785,257,273,203,0,181,81,119,974,504,3377
 ,,,,,,,,,,,
-"1. Includes Station Wagon, Land Cruisers, Land Rovers, Jeeps, Pick-ups, Articulated Vehicles, Water Tender, Hearse & Tapirs.",,,,,,,,,,,
+"1. Includes Station Wagon, Land Cruisers, Land Rovers, Jeeps, Pick0ups, Articulated Vehicles, Water Tender, Hearse & Tapirs.",,,,,,,,,,,
 Source:  Licence  Revenue  Office,,,,,,,,,,,
 Date: September 2019,,,,,,,,,,,
