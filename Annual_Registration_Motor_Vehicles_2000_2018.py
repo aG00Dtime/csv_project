@@ -1,7 +1,7 @@
 # need to install these libs to be able to run this
 # https://matplotlib.org/stable/index.html
 # https://pandas.pydata.org/pandas-docs/stable/getting_started/index.html
-# https://numpy.org/
+
 
 # output data->done
 # summaries-> done
@@ -11,7 +11,7 @@
 
 #  <--- code STARTS here --->
 # import libs needed
-from numpy.lib.function_base import diff
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
