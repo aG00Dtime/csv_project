@@ -10,6 +10,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 # <----Csv file handling starts here---->
 # read the csv file
 csv_file = pd.read_csv(
@@ -37,23 +38,22 @@ pd.options.display.float_format = '{:,.0f}'.format
 
 
 def summaries():
-    ''' some summaries of the data ,means,sums '''
-    # summaries
+    '''SUMMARIES'''
+    # https: // pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
 
     # print summaries
-    print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018\n")
+    print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018 (Sorted from Highest to Lowest)\n")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean().to_string())
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].mean().sort_values(ascending=False).to_string())
     # converted to float because base values are ints
-    print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018\n ")
+    print("\nTOTAL VEHICLES (BY TYPE) REGISTERED FROM 2000 - 2018 (Sorted from Highest to Lowest)\n ")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
-                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().to_string())
+                                   'Station_Wagons', 'Vans', 'Tractors', 'Trailers', 'Motorcycles', 'Other']].sum().sort_values(ascending=False).to_string())
 
     print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
     # converted to float because base values are ints
     print((vehicle_registration_df[['Total']].sum().to_string()))
     # need to do this
-    print("\nMost registered vehicle was x and the least registered was y WIP\n ")
 
 
 def graphs():
@@ -64,7 +64,7 @@ def graphs():
         user_graph_choice = input("Choice : ")
 
         if int(user_graph_choice) == 1:
-            # plot.bar plots everthing in the dataframe next to eachother
+            # plot.bar plots everthing in the dataframe next to each other
             # vehicle_registration_df.plot(x='Period')
 
             # private cars
