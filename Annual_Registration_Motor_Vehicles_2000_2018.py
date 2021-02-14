@@ -29,12 +29,10 @@ vehicle_registration_df = csv_file.iloc[:19]
 # convert datatypes to  ints except the year column
 vehicle_registration_df.loc[:,
                             vehicle_registration_df.columns != 'Period'].astype(float)
-
-
-# <----Csv file handling ends here---->
-
 # thousands seperator for outputs,eg. 5,000 or 20,000 etc
 pd.options.display.float_format = '{:,.0f}'.format
+
+# <----Csv file handling ends here---->
 
 
 def summaries():
