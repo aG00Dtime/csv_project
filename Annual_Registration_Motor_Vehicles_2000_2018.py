@@ -6,7 +6,7 @@
 # output data->done
 # summaries-> done
 # graphs--> done
-# very create things-->done,maybe
+# very creative things-->done,maybe
 
 
 #  <--- code STARTS here --->
@@ -204,7 +204,7 @@ def year_vs_year():
 
 
 def prompt():
-
+    '''menu'''
     while True:
         print(
             "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo compare two years Enter [5]\nTo exit the program Enter [0] ")
