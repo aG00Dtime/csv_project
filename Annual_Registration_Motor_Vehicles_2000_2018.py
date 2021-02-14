@@ -7,14 +7,13 @@
 # summaries-> done
 # graphs--> done
 # very create things-->done,maybe
+
+
 #  <--- code STARTS here --->
-
 # import libs needed
-
 from numpy.lib.function_base import diff
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 # <----Csv file handling starts here---->
 # read the csv file
@@ -24,11 +23,9 @@ csv_file = pd.read_csv(
 csv_file.columns = [col.replace(
     " ",  "_") for col in csv_file.columns]
 
-
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html
 # the name of the dataframe is vehicle_registration_df - only select the 19 rows we used
 vehicle_registration_df = csv_file.iloc[:19]
-
 
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 # convert datatypes to  ints except the year column
@@ -36,7 +33,6 @@ vehicle_registration_df.loc[:,
                             vehicle_registration_df.columns != 'Period'].astype(float)
 # thousands seperator for outputs,eg. 5,000 or 20,000 etc
 pd.options.display.float_format = '{:,.0f}'.format
-
 # <----Csv file handling ends here---->
 
 
