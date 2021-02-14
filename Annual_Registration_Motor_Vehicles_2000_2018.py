@@ -2,13 +2,18 @@
 # https://matplotlib.org/stable/index.html
 # https://pandas.pydata.org/pandas-docs/stable/getting_started/index.html
 
-
+# output data->done
+# summaries-> done
+# graphs--> done
+#
 #  <--- code STARTS here --->
 
 # import libs needed
 
+from numpy.lib.function_base import diff
 import pandas as pd
 import matplotlib.pyplot as plt
+from tabulate import tabulate
 
 
 # <----Csv file handling starts here---->
@@ -148,17 +153,13 @@ def year_view():
 
 
 def year_vs_year():
-    # this should ideally output the difference between the two years
-    '''plots a graph that shows the two years side by side'''
-
+    '''shows the difference between two years and produces a graph that shows the two years side by side'''
     df = vehicle_registration_df
-
     while True:
         year1_ask = input("Enter the 1st year :")
         # incorrect year check/isdecimal() returns true if only numbers are entered
         if not year1_ask.isdecimal():
             print("\nEnter numbers only")
-
         elif 2000 > int(year1_ask) or int(year1_ask) > 2018:
             print("\nIncorrect Year")
             continue
@@ -170,7 +171,6 @@ def year_vs_year():
         # incorrect year check/isdecimal() returns true if only numbers are entered
         if not year2_ask.isdecimal():
             print("\nEnter numbers only")
-
         elif 2000 > int(year2_ask) or int(year2_ask) > 2018:
             print("\nIncorrect Year")
             continue
@@ -182,17 +182,27 @@ def year_vs_year():
     year2 = df[df.Period == year2_ask
                ]
 
+    # combine two years into 1 df
     joined_df = [year1, year2]
     joined_df = pd.concat(joined_df)
-    print(joined_df.set_index("Period").diff())  # need to change this
-
-    # print(joined_df.diff(periods=-1))
+    # copy values here for the graph
+    graph_values = joined_df
+    # get the difference of the two years , .abs (absolute value) to get the absolute values and not negatives
+    difference = joined_df.set_index("Period").diff().abs()
+    # only show the difference in a single row
+    difference = difference.iloc[1:2]
+    # combime the row with the difference to the df with the years
+    joined_df = [joined_df, difference]
+    joined_df = pd.concat(joined_df)
+    # because the index was set to 'period' ,the column goes blank when merged,so we can replace that NaN value with 'Difference' :),Perfect
+    joined_df = joined_df.fillna('Difference')
+    # print the data
+    print('\n', joined_df.to_string(index=False))
     # plot graphs of the two years
-    joined_df.plot.bar(x='Period')
+    graph_values.plot.bar(x='Period')
     # labels
     plt.xlabel("Years")
     plt.ylabel("Amount of Vehicles Registered")
-
     # show the graph
     plt.show()
 
