@@ -57,7 +57,7 @@ def summaries():
 
 
 def graphs():
-    # view graphs
+    '''graphs'''
     while True:
         print(
             "\nTo view a graphs that shows all registered vehicles during the period 2000 - 2018 Press [1]\nTo view a graph that compares the total vehicles registered per year during the period 2000 to 2018 Press [2]\nTo exit this menu press [3]")
@@ -186,7 +186,7 @@ def year_vs_year():
 
     joined_df = [year1, year2]
     joined_df = pd.concat(joined_df)
-    print(joined_df.set_index("Period").diff())
+    print(joined_df.set_index("Period").diff())  # need to change this
 
     # print(joined_df.diff(periods=-1))
     # plot graphs of the two years
