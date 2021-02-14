@@ -7,4 +7,4 @@
 
 * Summaries are produced that shows the average vehicles registered and total over the period (sorted from highest to lowest).[Option 4]
 
-- They also have the option to see the difference between two years and a graphs that shows the years side by side. [Option 5]
+- They also have the option to see the difference between two years that they select and a graph that shows the years side by side. [Option 5]
