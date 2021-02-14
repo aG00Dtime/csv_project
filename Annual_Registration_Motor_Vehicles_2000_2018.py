@@ -1,7 +1,6 @@
 # need to install these libs to be able to run this
 # https://matplotlib.org/stable/index.html
 # https://pandas.pydata.org/pandas-docs/stable/getting_started/index.html
-# https://pypi.org/project/tabulate/
 # https://numpy.org/
 
 # output data->done
@@ -15,7 +14,6 @@
 from numpy.lib.function_base import diff
 import pandas as pd
 import matplotlib.pyplot as plt
-from tabulate import tabulate
 
 
 # <----Csv file handling starts here---->
