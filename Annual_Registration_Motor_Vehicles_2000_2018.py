@@ -4,14 +4,12 @@
 
 
 # output data->done
-# summaries-> done
+# summaries-> done,maybe?
 # graphs--> done
-# very creative things-->done,maybe
-
+# very creative things-->??
 
 #  <--- code STARTS here --->
 # import libs needed
-
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -26,7 +24,8 @@ csv_file.columns = [col.replace(
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html
 # the name of the dataframe is vehicle_registration_df - only select the 19 rows we used
 vehicle_registration_df = csv_file.iloc[:19]
-
+# data for quarterly registrations from 2014 to 2018
+vehicle_registration_df_quarterly_data = csv_file.iloc[23:53]
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 # convert datatypes to  ints except the year column
 vehicle_registration_df.loc[:,
@@ -37,7 +36,7 @@ pd.options.display.float_format = '{:,.0f}'.format
 
 
 def summaries():
-    '''SUMMARIES'''
+    # summaries
     # https: // pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
 
     # print summaries
@@ -56,7 +55,7 @@ def summaries():
 
 
 def graphs():
-    '''graphs'''
+    # graphs
     while True:
         print(
             "\nTo view a graphs that shows all registered vehicles during the period 2000 - 2018 Press [1]\nTo view a graph that compares the total vehicles registered per year during the period 2000 to 2018 Press [2]\nTo exit this menu press [3]")
@@ -67,38 +66,38 @@ def graphs():
             # vehicle_registration_df.plot(x='Period')
 
             # private cars
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Private_Cars)
             # lorries
 
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Lorries)
             # vans
 
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Vans)
             # hire cars
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Hire_Cars)
             # buses
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Buses)
             # Station Wagons
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Station_Wagons)
             # tractors
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Tractors)
 
             # trailers
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Trailers)
             # motorcycles
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Motorcycles)
 
             # other vehicles
-            plt.plot((vehicle_registration_df.Period),
+            plt.plot(vehicle_registration_df.Period,
                      vehicle_registration_df.Other)
 
             # labels
@@ -126,7 +125,7 @@ def graphs():
 
 
 def year_view():
-    ''' outputs a single year's data '''
+    # outputs a single year's data
 
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
@@ -149,10 +148,10 @@ def year_view():
 
 
 def year_vs_year():
-    '''shows the difference between two years and produces a graph that shows the two years side by side'''
+    # shows the difference between two years and produces a graph that shows the two years side by side
     df = vehicle_registration_df
     while True:
-        year1_ask = input("Enter the 1st year :")
+        year1_ask = input("\nEnter the 1st year :")
         # incorrect year check/isdecimal() returns true if only numbers are entered
         if not year1_ask.isdecimal():
             print("\nEnter numbers only")
@@ -204,10 +203,10 @@ def year_vs_year():
 
 
 def prompt():
-    '''menu'''
+    # menu
     while True:
         print(
-            "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo compare two years Enter [5]\nTo exit the program Enter [0] ")
+            "\nTo view all the registration data from the year 2000 to 2018 Enter [1]\nTo view data by year Enter [2]\nTo view graphs of the data Enter [3]\nTo view summaries of the data Enter [4]\nTo compare two years Enter [5]\nTo view the quarterly registration data from 2014 to 2018 Enter [6]\nTo exit the program Enter [0] ")
         ask_user = input('Choice : ')
 
         if not ask_user.isdecimal():
@@ -224,6 +223,9 @@ def prompt():
             summaries()
         elif int(ask_user) == 5:
             year_vs_year()
+        elif int(ask_user) == 6:
+            print(vehicle_registration_df_quarterly_data.fillna(
+                '').to_string(index=False))
         elif int(ask_user) == 0:
             break
         else:
