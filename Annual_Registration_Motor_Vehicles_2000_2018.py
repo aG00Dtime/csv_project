@@ -2,17 +2,10 @@
 # https://matplotlib.org/stable/index.html
 # https://pandas.pydata.org/pandas-docs/stable/getting_started/index.html
 
-
-# output data->done
-# summaries-> done,maybe?
-# graphs--> done
-# very creative things-->??
-
 #  <--- code STARTS here --->
 # import libs needed
 import pandas as pd
 import matplotlib.pyplot as plt
-
 # <----Csv file handling starts here---->
 # read the csv file
 csv_file = pd.read_csv(
@@ -20,7 +13,6 @@ csv_file = pd.read_csv(
 # replace spaces with underscores in the header
 csv_file.columns = [col.replace(
     " ",  "_") for col in csv_file.columns]
-
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html
 # the name of the dataframe is vehicle_registration_df - only select the 19 rows we used
 vehicle_registration_df = csv_file.iloc[:19]
@@ -38,7 +30,6 @@ pd.options.display.float_format = '{:,.0f}'.format
 def summaries():
     # summaries
     # https: // pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
-
     # print summaries
     print("\nAVERAGE VEHICLES (BY TYPE) REGISTERED PER YEAR FROM 2000 - 2018 (Sorted from Highest to Lowest)\n")
     print(vehicle_registration_df[['Private_Cars', 'Hire_Cars', 'Lorries', 'Buses',
@@ -51,7 +42,6 @@ def summaries():
     print("\nTOTAL VEHICLES REGISTERED FROM 2000 - 2018\n ")
     # converted to float because base values are ints
     print((vehicle_registration_df[['Total']].sum().to_string()))
-    # need to do this
 
 
 def graphs():
@@ -126,7 +116,6 @@ def graphs():
 
 def year_view():
     # outputs a single year's data
-
     while True:
         ask_user_for_year = (input("\nPlease enter a year :"))
 
@@ -144,7 +133,6 @@ def year_view():
                                           ask_user_for_year]
     # print the data
     print(custom_year.to_string(index=False))
-    # ask if they want to search again
 
 
 def year_vs_year():
