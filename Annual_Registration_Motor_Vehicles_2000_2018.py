@@ -78,27 +78,20 @@ def graphs():
 
         if int(user_graph_choice) == 1:
 
-            # skip period column
-            graph_data = vehicle_registration_df.columns[1:]
-
+            # skip period and total column
+            graph_data = vehicle_registration_df.columns[1:len(
+                vehicle_registration_df.columns)-1]
+            col_names = []
             # loop through columns to create a graph
             for col in graph_data:
                 plt.plot(
                     vehicle_registration_df.Period, vehicle_registration_df[col])
+                # create legend names while looping through columns
+                col_names.append(col)
 
             # x & y labels
             plt.xlabel("Years")
             plt.ylabel("Amount of Vehicles Registered")
-
-            # create legend names
-            col_names = []
-
-            for col in graph_data:
-                col_names.append(col)
-
-            # remove total from legend
-            del col_names[-1]
-
             plt.legend(col_names)
 
             # show the graph
@@ -121,6 +114,12 @@ def graphs():
             continue
 
 
+def year_check(year):
+    # check if year in range
+    if 2000 > int(year) or int(year) > 2018:
+        return True
+
+
 def year_view():
 
     # outputs a single year's data
@@ -131,7 +130,7 @@ def year_view():
         if not ask_user_for_year.isdecimal():
             print("\nEnter numbers only")
 
-        elif 2000 > int(ask_user_for_year) or int(ask_user_for_year) > 2018:
+        elif year_check(ask_user_for_year):
             print("\nIncorrect Year")
             continue
         else:
@@ -153,7 +152,7 @@ def year_vs_year():
         # incorrect year check/isdecimal() returns true if only numbers are entered
         if not year1_ask.isdecimal():
             print("\nEnter numbers only")
-        elif 2000 > int(year1_ask) or int(year1_ask) > 2018:
+        elif year_check(year1_ask):
             print("\nIncorrect Year")
             continue
         else:
@@ -165,7 +164,7 @@ def year_vs_year():
         # incorrect year check/isdecimal() returns true if only numbers are entered
         if not year2_ask.isdecimal():
             print("\nEnter numbers only")
-        elif 2000 > int(year2_ask) or int(year2_ask) > 2018:
+        elif year_check(year2_ask):
             print("\nIncorrect Year")
             continue
         else:
@@ -205,7 +204,6 @@ def year_vs_year():
     # labels
     plt.xlabel("Years")
     plt.ylabel("Amount of Vehicles Registered")
-
     # show the graph
     plt.show()
 
