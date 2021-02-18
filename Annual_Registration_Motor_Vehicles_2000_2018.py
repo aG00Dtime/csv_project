@@ -41,12 +41,6 @@ pd.options.display.float_format = '{:,.0f}'.format
 # <----Csv file handling ends here---->
 
 
-def sum_for():
-    avg = [vehicle_registration_df.columns !=
-           'Period' and vehicle_registration_df.columns != "Total"]
-    print(avg)
-
-
 def summaries():
     # summaries
     # https: // pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
