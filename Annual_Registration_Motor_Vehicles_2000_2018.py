@@ -5,7 +5,7 @@
 #  <--- code STARTS here --->
 
 # import libs needed
-from os import sep
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
