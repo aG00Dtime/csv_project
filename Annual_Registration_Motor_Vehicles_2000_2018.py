@@ -21,6 +21,7 @@ csv_file.columns = [col.replace(
     " ",  "_") for col in csv_file.columns]
 
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 # the name of the dataframe is vehicle_registration_df - only select the 19 rows we used
 
 vehicle_registration_df = csv_file.loc[:18]
