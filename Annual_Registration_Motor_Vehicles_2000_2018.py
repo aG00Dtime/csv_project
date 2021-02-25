@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 
 # get folder location
 root_folder = os.path.dirname(os.path.realpath(__file__))
+# path to the csv file
 file_path = os.path.join(
     root_folder, 'Annual_Registration_Motor_Vehicles_2000_2018.csv')
 
