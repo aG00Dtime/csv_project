@@ -4,17 +4,21 @@
 
 #  <--- code STARTS here --->
 
-# import libs needed
-
+# # import libs needed
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# get folder location
+root_folder = os.path.dirname(os.path.realpath(__file__))
+file_path = os.path.join(
+    root_folder, 'Annual_Registration_Motor_Vehicles_2000_2018.csv')
 
+print('\nOpening:', file_path)
 # <----Csv file handling starts here---->
 # read the csv file
 
-csv_file = pd.read_csv(
-    "Annual_Registration_Motor_Vehicles_2000_2018.csv", skiprows=[0])
+csv_file = pd.read_csv(file_path, skiprows=[0])
 
 # replace spaces with underscores in the header
 csv_file.columns = [col.replace(
